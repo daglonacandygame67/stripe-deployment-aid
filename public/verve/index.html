@@ -218,9 +218,11 @@ const STRIPE_CONFIG = {
     yearly: { id: "price_YOUR_YEARLY_PRICE_ID", display: "$59" }
   },
   yearlySavingsPct: 30,
-  createCheckoutSessionUrl: "https://YOUR_BACKEND/createCheckoutSession",
-  createPortalSessionUrl: "https://YOUR_BACKEND/createPortalSession",
-  verifyCheckoutSessionUrl: "https://YOUR_BACKEND/verifyCheckoutSession"
+  // Backend endpoints live in the Lovable project (Stripe secret key stays server-side).
+  backendBase: "https://project--863b9446-69a4-4bea-b9db-a115481b8ccd.lovable.app/api/public/stripe",
+  createCheckoutSessionUrl: "https://project--863b9446-69a4-4bea-b9db-a115481b8ccd.lovable.app/api/public/stripe/create-checkout-session",
+  createPortalSessionUrl: "https://project--863b9446-69a4-4bea-b9db-a115481b8ccd.lovable.app/api/public/stripe/create-portal-session",
+  verifyCheckoutSessionUrl: "https://project--863b9446-69a4-4bea-b9db-a115481b8ccd.lovable.app/api/public/stripe/verify-checkout-session"
 };
 function stripeConfigured() {
   return !/YOUR_BACKEND|YOUR_.*_PRICE_ID|YOUR_PUBLISHABLE_KEY/.test(
