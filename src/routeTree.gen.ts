@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicStripeCreateCheckoutSessionRouteImport } from './routes/api/public/stripe/create-checkout-session'
+import { Route as ApiPublicStripeCreatePortalSessionRouteImport } from './routes/api/public/stripe/create-portal-session'
+import { Route as ApiPublicStripeVerifyCheckoutSessionRouteImport } from './routes/api/public/stripe/verify-checkout-session'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicStripeCreateCheckoutSessionRoute =
+  ApiPublicStripeCreateCheckoutSessionRouteImport.update({
+    id: '/api/public/stripe/create-checkout-session',
+    path: '/api/public/stripe/create-checkout-session',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicStripeCreatePortalSessionRoute =
+  ApiPublicStripeCreatePortalSessionRouteImport.update({
+    id: '/api/public/stripe/create-portal-session',
+    path: '/api/public/stripe/create-portal-session',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicStripeVerifyCheckoutSessionRoute =
+  ApiPublicStripeVerifyCheckoutSessionRouteImport.update({
+    id: '/api/public/stripe/verify-checkout-session',
+    path: '/api/public/stripe/verify-checkout-session',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/stripe/create-checkout-session': typeof ApiPublicStripeCreateCheckoutSessionRoute
+  '/api/public/stripe/create-portal-session': typeof ApiPublicStripeCreatePortalSessionRoute
+  '/api/public/stripe/verify-checkout-session': typeof ApiPublicStripeVerifyCheckoutSessionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/stripe/create-checkout-session': typeof ApiPublicStripeCreateCheckoutSessionRoute
+  '/api/public/stripe/create-portal-session': typeof ApiPublicStripeCreatePortalSessionRoute
+  '/api/public/stripe/verify-checkout-session': typeof ApiPublicStripeVerifyCheckoutSessionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/stripe/create-checkout-session': typeof ApiPublicStripeCreateCheckoutSessionRoute
+  '/api/public/stripe/create-portal-session': typeof ApiPublicStripeCreatePortalSessionRoute
+  '/api/public/stripe/verify-checkout-session': typeof ApiPublicStripeVerifyCheckoutSessionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/public/stripe/create-checkout-session'
+    | '/api/public/stripe/create-portal-session'
+    | '/api/public/stripe/verify-checkout-session'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/public/stripe/create-checkout-session'
+    | '/api/public/stripe/create-portal-session'
+    | '/api/public/stripe/verify-checkout-session'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/stripe/create-checkout-session'
+    | '/api/public/stripe/create-portal-session'
+    | '/api/public/stripe/verify-checkout-session'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicStripeCreateCheckoutSessionRoute: typeof ApiPublicStripeCreateCheckoutSessionRoute
+  ApiPublicStripeCreatePortalSessionRoute: typeof ApiPublicStripeCreatePortalSessionRoute
+  ApiPublicStripeVerifyCheckoutSessionRoute: typeof ApiPublicStripeVerifyCheckoutSessionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/stripe/create-checkout-session': {
+      id: '/api/public/stripe/create-checkout-session'
+      path: '/api/public/stripe/create-checkout-session'
+      fullPath: '/api/public/stripe/create-checkout-session'
+      preLoaderRoute: typeof ApiPublicStripeCreateCheckoutSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/stripe/create-portal-session': {
+      id: '/api/public/stripe/create-portal-session'
+      path: '/api/public/stripe/create-portal-session'
+      fullPath: '/api/public/stripe/create-portal-session'
+      preLoaderRoute: typeof ApiPublicStripeCreatePortalSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/stripe/verify-checkout-session': {
+      id: '/api/public/stripe/verify-checkout-session'
+      path: '/api/public/stripe/verify-checkout-session'
+      fullPath: '/api/public/stripe/verify-checkout-session'
+      preLoaderRoute: typeof ApiPublicStripeVerifyCheckoutSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicStripeCreateCheckoutSessionRoute:
+    ApiPublicStripeCreateCheckoutSessionRoute,
+  ApiPublicStripeCreatePortalSessionRoute:
+    ApiPublicStripeCreatePortalSessionRoute,
+  ApiPublicStripeVerifyCheckoutSessionRoute:
+    ApiPublicStripeVerifyCheckoutSessionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
