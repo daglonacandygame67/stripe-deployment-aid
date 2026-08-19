@@ -26,7 +26,7 @@ export const Route = createFileRoute("/api/public/stripe/create-checkout-session
             success_url: body.successUrl,
             cancel_url: body.cancelUrl,
             allow_promotion_codes: true,
-            client_reference_id: body.linkCode ?? undefined,
+            ...(body.linkCode ? { client_reference_id: body.linkCode } : {}),
             subscription_data: {
               metadata: {
                 plan: body.plan ?? "",
